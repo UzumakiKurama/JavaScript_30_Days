@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key='65' src="sounds/clap.wav"></audio>
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
   <audio data-key="70" src="sounds/openhat.wav"></audio>
@@ -59,7 +59,20 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  document.addEventListener('keypress', (event) => {
+    console.log(event.keyCode);
+    const element = document.querySelector(`[data-key='${event.keyCode}']`);
+    element.classList.add('playing');
 
+    const audioElement = document.querySelector(`audio[data-key='${event.keyCode}']`);
+    audioElement.currentTime = 0;
+    audioElement.play();
+  })
+
+  document.addEventListener('keyup', (event) => {
+    const element = document.querySelector(`[data-key='${event.keyCode}']`);
+    element.classList.remove('playing');
+  })
 </script>
 
 
